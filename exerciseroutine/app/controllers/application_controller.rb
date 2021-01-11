@@ -9,3 +9,10 @@ class ApplicationController < Sinatra::Base
     enable :sessions
     set :session_secret, "Routine_secret"
   end
+  get "/" do
+    erb :index
+  end
+  helpers do
+    def signed_in?
+      !!current_user
+    end
