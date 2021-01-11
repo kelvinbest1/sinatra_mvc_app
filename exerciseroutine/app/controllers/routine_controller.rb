@@ -44,3 +44,18 @@ get "/routines" do
       redirect "/signin"
     end
   end
+
+  get '/routines/:id' do
+    if signed_in?
+      # @user = User.find_by(id: session[:user_id])
+      @routine = Routine.find(params[:id])
+      if @routine && @routine.user == current_user
+     
+      erb :'/routines/show.html'
+    else
+      redirect "/signin"
+    end
+    else
+      redirect '/signin'
+    end
+  end
