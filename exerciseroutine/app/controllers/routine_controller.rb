@@ -92,3 +92,18 @@ get "/routines" do
       redirect '/signin'
     end
   end
+
+  delete '/routines/:id/delete' do
+    if signed_in?
+      @user = User.find_by(id: session[:user_id]) if session[:user_id]
+      @routine = Routine.find_by_id(params[:id])
+      # binding.pry
+      if @routine && @routine.user == current_user
+        @routine.delete
+        redirect '/routines'
+      end
+    else
+      redirect to '/signin'
+    end
+  end
+ end
