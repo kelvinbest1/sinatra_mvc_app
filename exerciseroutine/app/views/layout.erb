@@ -15,7 +15,22 @@
   </head>
   <body>
     <div class="wrapper">
+      
+      <nav>
+          <% if signed_in? %>
 
+            <button><a href="/routines/new"> Create New routine </a></button>
+            <button><a href="/signout"> Sign-Out </a></button>
+            <button><a href="/users/<%=current_user.id %>"> Edit-Profile </a></button>
+            <button><a href="/routines"> Show-My-Routines </a></button>
+            <p>Welcome, <strong><%=current_user.name.upcase %></strong></p>
+
+          <% else %>
+            <button><a href="/signup">Sign-Up</a></button>
+            <button><a href="/signin"> Sign-In </a></button>
+          <%end %>
+
+        </nav>
         <%= yield %>
 
       <footer class="branding">
