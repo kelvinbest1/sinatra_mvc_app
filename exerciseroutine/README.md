@@ -1,15 +1,16 @@
 
-EXERCISE ROUTINE Application
-introduction
+# EXERCISE ROUTINE Application
+
+# introduction
 is a Sinatra application using MVC structure. The application used database sqlite3 to store users information and exiercise routines. ActiveRecord has been used to set the associations relationship
 
-Overview
+# Overview
 The application is designed to let the user to :
 
 Create a new account and sign-in
 Edit his profile page by updating his personal info name & email
 Create a new exercise routines, show exercise routines, update and delete routines
-Running the app
+# Running the app
 fork and clone this repo.
 cd the directory from the terminal
 in the terminal run bundle install to install all required gems
