@@ -2,7 +2,7 @@
 # EXERCISE ROUTINE Application
 
 # Introduction
-is a Sinatra application using MVC structure. The application used database sqlite3 to store users information and exiercise routines. ActiveRecord has been used to set the associations relationship
+This is a Sinatra application using MVC structure. The application used database sqlite3 to store users information and exiercise routines. ActiveRecord has been used to set the associations relationship
 
 # Overview
 The application is designed to let the user to :
