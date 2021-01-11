@@ -59,6 +59,42 @@ class UsersController < ApplicationController
           redirect "/index"
         end
       end
+
+      get "/users/:id/edit" do
+        @user = User.find_by(id: session[:user_id])
+        if @user
+    
+        
+        erb :"/users/edit.html"
+        else
+          redirect "/signin"
+        end
+      end
+
+      patch '/users/:id' do
+      
+        if signed_in?
+          if params[:name].empty?
+            
+            redirect "/users/#{params[:id]}/edit"
+          else
+            @user = User.find_by_id(params[:id])
+            if @user == current_user
+              if @user.update(:name => params[:name], :email => params[:email])
+                redirect to "/users/#{@user.id}"
+              else
+              redirect to "/users/#{@user.id}/edit"
+              end
+            else
+              redirect to '/users'
+            end
+          end
+        else
+          redirect '/signin'
+        end
+      end
+      
+    
     
   
     
