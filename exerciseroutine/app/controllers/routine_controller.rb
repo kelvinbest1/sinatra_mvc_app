@@ -59,3 +59,15 @@ get "/routines" do
       redirect '/signin'
     end
   end
+
+  get "/routines/:id/edit" do
+    @user = User.find_by(id: session[:user_id])
+    @routine = Routine.find(params[:id])
+    if @routine && @routine.user == current_user
+
+    
+    erb :"/routines/edit.html"
+    else
+      redirect "/routines"
+    end
+  end
