@@ -49,6 +49,18 @@ class UsersController < ApplicationController
           erb :"/users/signin.html"
         end
       end
+
+      get "/signout" do
+    
+        if signed_in?
+          session.destroy
+          redirect "/signin"
+        else
+          redirect "/index"
+        end
+      end
+    
+  
     
 
 
