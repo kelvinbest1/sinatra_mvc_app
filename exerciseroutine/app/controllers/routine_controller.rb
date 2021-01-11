@@ -1,5 +1,7 @@
-get "/routines" do
-      
+class RoutinesController < ApplicationController
+  # GET: /routines asking the server for the data in routine -- done
+  get "/routines" do
+    
     if signed_in?
      
       @user = User.find(session[:user_id])
@@ -13,6 +15,7 @@ get "/routines" do
     end
   end
 
+ 
   get "/routines/new" do
     if signed_in?
       @user = User.find_by(id: session[:user_id])
@@ -22,8 +25,9 @@ get "/routines" do
     end
   end
 
+
   post "/routines" do
-    
+  
     if signed_in?
       @user = User.find(session[:user_id])
     
@@ -44,7 +48,6 @@ get "/routines" do
       redirect "/signin"
     end
   end
-
   get '/routines/:id' do
     if signed_in?
       # @user = User.find_by(id: session[:user_id])
@@ -71,7 +74,6 @@ get "/routines" do
       redirect "/routines"
     end
   end
-
   patch '/routines/:id' do
     if signed_in?
       if params[:exercise].empty?
@@ -94,16 +96,17 @@ get "/routines" do
   end
 
   delete '/routines/:id/delete' do
-    if signed_in?
-      @user = User.find_by(id: session[:user_id]) if session[:user_id]
-      @routine = Routine.find_by_id(params[:id])
-      # binding.pry
-      if @routine && @routine.user == current_user
-        @routine.delete
-        redirect '/routines'
-      end
-    else
-      redirect to '/signin'
-    end
-  end
+   if signed_in?
+     @user = User.find_by(id: session[:user_id]) if session[:user_id]
+     @routine = Routine.find_by_id(params[:id])
+     # binding.pry
+     if @routine && @routine.user == current_user
+       @routine.delete
+       redirect '/routines'
+     end
+   else
+     redirect to '/signin'
+   end
  end
+end
+ 
