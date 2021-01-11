@@ -20,3 +20,13 @@ class UsersController < ApplicationController
           redirect "/routines"
         end
       end
+
+      post "/signin" do
+        @user = User.find_by(:name => params[:name])
+        if @user && @user.authenticate(params[:password])
+          session[:user_id] = @user.id
+          redirect '/routines'
+        else
+          redirect "/signup"
+        end
+      end
