@@ -30,3 +30,18 @@ class UsersController < ApplicationController
           redirect "/signup"
         end
       end
+
+      get '/users' do
+        if signed_in?
+         
+          @user = User.find(session[:user_id])
+         
+            erb :"users/show.html"
+        else
+          redirect "/signin"
+        end
+      end
+
+      
+
+
