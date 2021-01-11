@@ -42,6 +42,15 @@ class UsersController < ApplicationController
         end
       end
 
-      
+      get "/signin" do
+        if signed_in?
+          redirect '/routines'
+        else
+          erb :"/users/signin.html"
+        end
+      end
+    
+
+
 
 
