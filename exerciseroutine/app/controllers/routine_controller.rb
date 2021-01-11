@@ -71,3 +71,24 @@ get "/routines" do
       redirect "/routines"
     end
   end
+
+  patch '/routines/:id' do
+    if signed_in?
+      if params[:exercise].empty?
+        redirect "/routines/#{params[:id]}/edit"
+      else
+        @routine = Routine.find_by_id(params[:id])
+        if @routine && @routine.user == current_user
+          if @routine.update(:exercise => params[:exercise])
+            redirect to "/routines/#{@routine.id}"
+          else
+          redirect to "/routines/#{@routine.id}/edit"
+          end
+        else
+          redirect to '/routines'
+        end
+      end
+    else
+      redirect '/signin'
+    end
+  end
